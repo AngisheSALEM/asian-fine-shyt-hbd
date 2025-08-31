@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Happy Birth day fine shyt</title>
+    <meta name="description"
+        content="Un message romantique, sincère et personnalisé pour Christelle — regrets, souvenirs, promesses et déclaration finale." />
+    <meta property="og:title" content="Ryry— Pour toi" />
+    <meta property="og:description"
+        content="Un parcours émotionnel en 5 sections, avec animations délicates et musique douce." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="" />
+    <meta name="theme-color" content="#a80b93" />
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Cursive:wght@500;700&family=Oswald:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap"
+        rel="stylesheet" />
+
+    <!-- AOS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+
+    <style>
+        :root {
+            /* Palette principale */
+            --magenta: #a80b93;
+            /* couleur principale */
+            --magenta-light: #d414b8;
+            /* accent */
+            --magenta-dark: #80096f;
+            /* ombres */
+            --rose: #ff9aea;
+            /* surbrillances */
+            --g1: #fdf8fd;
+            /* gris doux 1 */
+            --g2: #f5f5f7;
+            /* gris doux 2 */
+
+            --text: #2e2330;
+            --muted: #6c5966;
+
+            --shadow: 0 4px 20px rgba(168, 11, 147, 0.15);
+
+            --section-pad: min(8vh, 80px) min(5vw, 56px);
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--g1);
+            color: var(--text);
+            font-family: 'Playfair Display', serif;
+            line-height: 1.6;
+            /* Défilement par sections */
+            scroll-snap-type: y mandatory;
+            overflow-y: auto;
+        }
+
+        /* Typo */
+        .title-cursive {
+            font-family: 'Edu NSW ACT Cursive', cursive
+        }
+
+        .subtitle {
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: .5px
+        }
+
+        h1,
+        h2,
+        h3 {
+            margin: 0 0 .6rem 0
+        }
+
+        h1 {
+            font-size: clamp(44px, 7vw, 84px);
+            line-height: 1.05
+        }
+
+        h2 {
+            font-size: clamp(28px, 4.6vw, 48px)
+        }
+
+        p {
+            font-size: clamp(16px, 1.6vw, 20px);
+            color: var(--text)
+        }
+
+        /* Loader */
+        #loader {
+            position: fixed;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            z-index: 9999;
+            background: var(--magenta);
+            color: white;
+        }
+
+        .loader-core {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            display: grid;
+            place-items: center
+        }
+
+        .ring {
+            position: absolute;
+            inset: 0;
+            border-radius: 999px;
+            border: 2px solid rgba(255, 255, 255, .5);
+            opacity: .7;
+            animation: pulse 1.6s ease-in-out infinite
+        }
+
+        .ring.r2 {
+            transform: scale(.75);
+            animation-delay: .2s
+        }
+
+        .ring.r3 {
+            transform: scale(.5);
+            animation-delay: .4s
+        }
+
+        .loader-C {
+            font-family: 'Edu NSW ACT Cursive', cursive;
+            font-size: 120px;
+            font-weight: 700;
+            text-shadow: 0 6px 20px rgba(0, 0, 0, .25)
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(.65);
+                opacity: .4
+            }
+
+            50% {
+                opacity: 1
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: .4
+            }
+        }
+
+        .loader-fade {
+            animation: loaderOut .8s ease forwards;
+        }
+
+        @keyframes loaderOut {
+            to {
+                opacity: 0;
+                visibility: hidden
+            }
+        }
+
+        /* Nav (glassmorphism) */
+        nav#topnav {
+            position: fixed;
+            top: 14px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 10px 18px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, .32);
+            backdrop-filter: blur(12px) saturate(140%);
+            box-shadow: var(--shadow);
+            z-index: 60;
+            opacity: 0;
+            pointer-events: none;
+            transition: .4s ease;
+        }
+
+        nav#topnav.visible {
+            opacity: 1;
+            pointer-events: auto
+        }
+
+        nav .brand {
+            font-family: 'Edu NSW ACT Cursive', cursive;
+            font-size: 22px;
+            color: var(--magenta-dark)
+        }
+
+        nav a {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--text);
+            opacity: .8
+        }
+
+        nav a:hover {
+            opacity: 1
+        }
+
+        /* Audio control */
+        .audio-ctrl {
+            position: fixed;
+            right: 16px;
+            top: 16px;
+            z-index: 70;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .55);
+            backdrop-filter: blur(14px);
+            box-shadow: var(--shadow);
+        }
+
+        .audio-btn {
+            appearance: none;
+            border: none;
+            background: transparent;
+            cursor: pointer
+        }
+
+        /* Sections */
+        section {
+            position: relative;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: var(--section-pad);
+            scroll-snap-align: start;
+            overflow: hidden;
+        }
+
+        .section-inner {
+            max-width: 1100px;
+            width: 100%;
+            text-align: center
+        }
+
+        /* Backgrounds par section */
+        .bg-hero {
+            background: radial-gradient(1200px 700px at 70% 30%, rgba(255, 154, 234, .28), transparent 60%),
+                linear-gradient(180deg, var(--g1), var(--g2))
+        }
+
+        .bg-2 {
+            background: linear-gradient(180deg, #fff, #fdf8fd)
+        }
+
+        .bg-3 {
+            background: linear-gradient(180deg, #fff, rgba(255, 154, 234, .18))
+        }
+
+        .bg-4 {
+            background: linear-gradient(180deg, #fff, rgba(212, 20, 184, .10))
+        }
+
+        .bg-5 {
+            background: radial-gradient(900px 600px at 20% 20%, rgba(168, 11, 147, .12), transparent 60%),
+                linear-gradient(180deg, #fff, #f5f5f7)
+        }
+
+        .accent {
+            color: var(--magenta)
+        }
+
+        /* First-fold staged text animations */
+        .staged {
+            opacity: 0
+        }
+
+        .fadeInDown {
+            animation: fadeInDown var(--dur, 1.2s) ease var(--delay, 0s) forwards
+        }
+
+        .fadeInUp {
+            animation: fadeInUp var(--dur, 1.2s) ease var(--delay, 0s) forwards
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-16px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(22px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        /* Progress dots */
+        .progress {
+            position: fixed;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            gap: 12px
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(168, 11, 147, .25);
+            border: 2px solid rgba(168, 11, 147, .35);
+            cursor: pointer;
+            transition: .25s
+        }
+
+        .dot.active {
+            background: var(--magenta);
+            border-color: var(--magenta)
+        }
+
+        .dot:hover {
+            transform: scale(1.1)
+        }
+
+        /* SVG fleur (coin inf. droit) */
+        .flower {
+            position: absolute;
+            right: clamp(10px, 3vw, 32px);
+            bottom: clamp(10px, 3vh, 26px);
+            width: min(28vw, 280px);
+            opacity: .9;
+            z-index: 3;
+            pointer-events: none
+        }
+
+        .stem,
+        .leaf,
+        .petal {
+            transform-origin: center;
+        }
+
+        .stem {
+            stroke: var(--magenta-dark);
+            stroke-width: 4;
+            fill: none;
+        }
+
+        .petal {
+            fill: url(#petalGrad)
+        }
+
+        .leaf {
+            fill: url(#leafGrad)
+        }
+
+        /* Footer CTA */
+        .cta-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 22px
+        }
+
+        .btn-accept {
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: .5px;
+            font-weight: 600;
+            padding: 14px 24px;
+            border-radius: 999px;
+            border: none;
+            cursor: pointer;
+            color: white;
+            background-image: linear-gradient(135deg, var(--magenta), var(--magenta-light));
+            box-shadow: 0 10px 30px rgba(168, 11, 147, .25);
+            transition: transform .2s ease, box-shadow .2s ease
+        }
+
+        .btn-accept:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 36px rgba(168, 11, 147, .34)
+        }
+
+        /* Particles overlay (hidden by défaut) */
+        #particles-js {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 40;
+            display: none
+        }
+
+        /* Responsive */
+        @media (max-width: 720px) {
+            nav#topnav {
+                gap: 12px
+            }
+
+            .section-inner {
+                text-align: left
+            }
+            .audio-ctrl input{
+                display: none;
+            }
+        
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Loader -->
+    <div id="loader" aria-label="Chargement">
+        <div class="loader-core" role="img" aria-label="Chargement en cours">
+            <div class="ring r1"></div>
+            <div class="ring r2"></div>
+            <div class="ring r3"></div>
+            <span class="loader-C">O</span>
+        </div>
+    </div>
+
+    <!-- Audio (WebAudio fallback) -->
+    <div class="audio-ctrl" aria-live="polite">
+        <button class="audio-btn" id="muteBtn" title="Activer/Désactiver la musique" aria-pressed="true">
+            <!-- simple speaker icon -->
+            <svg id="icon-sound" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path id="waves" d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+            </svg>
+        </button>
+        <input type="range" id="vol" min="0" max="1" step="0.01" value="0.3" aria-label="Volume" />
+    </div>
+
+    <!-- Nav -->
+    <nav id="topnav" aria-label="Navigation des sections">
+        <span class="brand">Olivia</span>
+    </nav>
+
+    <!-- Progress dots -->
+    <div class="progress" role="tablist" aria-label="Progression">
+        <div class="dot active" data-target="#s1" role="tab" aria-selected="true" aria-controls="s1"></div>
+        <div class="dot" data-target="#s2" role="tab" aria-controls="s2"></div>
+        <div class="dot" data-target="#s3" role="tab" aria-controls="s3"></div>
+        <div class="dot" data-target="#s4" role="tab" aria-controls="s4"></div>
+        <div class="dot" data-target="#s5" role="tab" aria-controls="s5"></div>
+    </div>
+
+    <!-- Particles overlay (for final confetti aura) -->
+    <div id="particles-js"></div>
+
+    <!-- Sections -->
+    <section id="s1" class="bg-hero" aria-labelledby="t1">
+        <div class="section-inner">
+            <h1 id="t1" class="title-cursive staged" style="--dur:1.5s">Olivia</h1>
+            <p class="subtitle staged" style="--delay:.3s; --dur:1.2s">Voici les souhait d'un lil tall nonchalant à sa fine shyt asian preferé </p>
+            <p class="staged" style="--delay:.8s; --dur:1.5s; max-width:820px; margin-inline:auto">En ce jour unique, je ne souhaite qu’une chose : que ton cœur déborde de joie et que ton sourire illumine encore plus le monde.
+                 <br> Tu es une personne précieuse, et ton anniversaire est l’occasion de célébrer la beauté que tu apportes dans nos vies. <br>
+                 Joyeux anniversaire, que cette journée soit aussi incroyable que toi</p>
+        </div>
+
+        <!-- Fleur (coin) -->
+        <svg class="flower" viewBox="0 0 240 300" aria-hidden="true">
+            <defs>
+                <linearGradient id="petalGrad" x1="0" x2="1">
+                    <stop offset="0%" stop-color="#ff9aea" />
+                    <stop offset="100%" stop-color="#d414b8" />
+                </linearGradient>
+                <linearGradient id="leafGrad" x1="0" x2="1">
+                    <stop offset="0%" stop-color="#a6ffcb" />
+                    <stop offset="100%" stop-color="#12d8fa" />
+                </linearGradient>
+            </defs>
+            <!-- Tige -->
+            <path class="stem" id="stem" d="M120 300 C 118 240, 104 200, 120 160 C 136 120, 140 80, 120 40"
+                stroke-dasharray="400" stroke-dashoffset="400" />
+            <!-- Feuilles -->
+            <path class="leaf" id="leaf1" d="M108 200 C 70 188, 64 160, 108 164 C 96 178, 98 190, 108 200 Z"
+                opacity="0" />
+            <path class="leaf" id="leaf2" d="M126 220 C 170 210, 184 184, 128 186 C 138 198, 138 210, 126 220 Z"
+                opacity="0" />
+            <path class="leaf" id="leaf3" d="M112 260 C 92 258, 72 238, 112 242 C 98 248, 100 254, 112 260 Z"
+                opacity="0" />
+            <!-- Pétales (rose) -->
+            <g id="rose" opacity="0" transform="translate(100,10)">
+                <path class="petal" d="M20 40 C 10 10, 60 10, 50 40 C 46 54, 24 54, 20 40 Z" />
+                <path class="petal" d="M34 48 C 20 28, 52 22, 56 48 C 56 56, 40 58, 34 48 Z" />
+                <path class="petal" d="M26 52 C 8 40, 18 18, 34 36 C 42 44, 38 58, 26 52 Z" />
+                <path class="petal" d="M40 56 C 60 44, 50 20, 34 38 C 26 46, 30 60, 40 56 Z" />
+            </g>
+        </svg>
+    </section>
+
+
+    <section id="s5" class="bg-5" aria-labelledby="t5">
+        <div class="section-inner" data-aos="fade-up" data-aos-duration="1000">
+            <h2 id="t5" class="title-cursive accent">Déclaration sincère</h2>
+            <p style="max-width:900px; margin-inline:auto">Tu as ce don rare d’illuminer chaque instant. <br> Ta présence réchauffe, ton rire apaise, et ton sourire transforme une simple journée en moment magique. <br> Aujourd’hui, c’est toi la reine de la fête, alors reçois tout l’amour, la tendresse et le bonheur que tu mérites. <br> Joyeux anniversaire à toi my asian fine shyt qui rends le monde plus doux</p>
+            <div class="cta-wrap">
+                <button class="btn-accept" id="acceptBtn">Accepter</button>
+            </div>
+        </div>
+    </section>
+    <audio id="bgMusic" src="musique/careless.unknown" preload="auto" loop></audio>
+
+    <!-- Scripts externes -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+    <script>
+        // --- AOS ---
+        AOS.init({ once: true, offset: 80 });
+
+        // --- Loader logique ---
+        const loader = document.getElementById('loader');
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                loader.classList.add('loader-fade');
+                stageFirstFoldTexts();
+                animateFlower();
+            }, 1100);
+        });
+
+        function stageFirstFoldTexts() {
+            const s1 = document.querySelector('#s1');
+            const staged = s1.querySelectorAll('.staged');
+            staged[0].classList.add('fadeInDown');
+            staged[1].classList.add('fadeInUp');
+            staged[2].classList.add('fadeInUp');
+        }
+
+        // --- Flower animation with GSAP ---
+        function animateFlower() {
+            const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+            tl.to('#stem', { duration: 2, strokeDashoffset: 0 })
+                .to(['#leaf1', '#leaf2', '#leaf3'], { duration: .5, opacity: 1, stagger: .25 }, '-=1.2')
+                .from(['#leaf1', '#leaf2', '#leaf3'], { duration: .6, scale: .6, transformOrigin: 'center', stagger: .25 }, '<')
+                .to('#rose', { duration: .6, opacity: 1 }, '-=.4')
+                .from('#rose .petal', { duration: .7, scale: .7, transformOrigin: 'center', stagger: .12 }, '<');
+            // oscillation douce des feuilles
+            gsap.to(['#leaf1', '#leaf2', '#leaf3'], { yoyo: true, repeat: -1, rotate: (i) => i % 2 ? 3 : -3, duration: 2.8, ease: 'sine.inOut' });
+        }
+
+        // --- Nav show/hide + progress dots with ScrollMagic ---
+        const controller = new ScrollMagic.Controller();
+        const topnav = document.getElementById('topnav');
+        const sections = Array.from(document.querySelectorAll('section'));
+        const dots = Array.from(document.querySelectorAll('.dot'));
+
+        sections.forEach((sec, idx) => {
+            new ScrollMagic.Scene({ triggerElement: sec, triggerHook: 0.6, duration: sec.offsetHeight })
+                .on('enter', () => setActiveDot(idx))
+                .addTo(controller);
+        });
+
+        function setActiveDot(i) {
+            dots.forEach((d, idx) => { d.classList.toggle('active', idx === i); d.setAttribute('aria-selected', idx === i) });
+            // nav visible après la première section
+            if (i > 0) { topnav.classList.add('visible'); } else { topnav.classList.remove('visible'); }
+        }
+
+        dots.forEach(d => {
+            d.addEventListener('click', () => {
+                const target = document.querySelector(d.dataset.target);
+                target && target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+       const audioEl = document.getElementById('bgMusic');
+    const muteBtn = document.getElementById('muteBtn');
+    const vol = document.getElementById('vol');
+
+    let isMuted = true;
+
+    // Initial volume (depuis slider)
+    audioEl.volume = vol.value;
+
+    // Activation sur premier geste utilisateur (autoplay safe)
+    document.addEventListener('pointerdown', () => {
+        if (audioEl.paused) {
+            audioEl.play().catch(() => {});
+            setMuted(false);
+        }
+    }, { once: true });
+
+    function setMuted(m) {
+        isMuted = m;
+        audioEl.muted = isMuted;
+        document.getElementById('waves').style.opacity = isMuted ? .35 : 1;
+        muteBtn.setAttribute('aria-pressed', (!isMuted).toString());
+    }
+
+    muteBtn.addEventListener('click', () => {
+        if (audioEl.paused) audioEl.play().catch(() => {});
+        setMuted(!isMuted);
+    });
+
+    vol.addEventListener('input', () => {
+        audioEl.volume = vol.value;
+        if (audioEl.muted) setMuted(false);
+    });
+
+        // --- Final CTA interactions: particles aura + confetti ---
+        const acceptBtn = document.getElementById('acceptBtn');
+        acceptBtn.addEventListener('click', () => {
+            // particles aura (2s)
+            const holder = document.getElementById('particles-js');
+            holder.style.display = 'block'; holder.style.opacity = '1';
+            particlesJS('particles-js', {
+                particles: {
+                    number: { value: 90, density: { enable: true, value_area: 800 } },
+                    color: { value: ['#a80b93', '#d414b8', '#ff9aea'] },
+                    shape: { type: ['circle', 'star'] },
+                    opacity: { value: 0.8, random: true },
+                    size: { value: 3, random: true },
+                    line_linked: { enable: false },
+                    move: { enable: true, speed: 2, direction: 'bottom', random: true, out_mode: 'out' }
+                },
+                retina_detect: true
+            });
+            // confetti realistic burst (2s)
+            const end = Date.now() + 2 * 1000;
+            (function frame() {
+                confetti({ particleCount: 6, spread: 70, origin: { y: 0 }, colors: ['#a80b93', '#d414b8', '#ff9aea', '#80096f'] });
+                if (Date.now() < end) { requestAnimationFrame(frame); } else {
+                    // Fade out particles canvas
+                    holder.style.transition = 'opacity .6s ease'; holder.style.opacity = '0';
+                    setTimeout(() => { holder.style.display = 'none'; holder.innerHTML = ''; }, 650);
+                }
+            })();
+        });
+
+        // Accessibility: reduce motion respect
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.querySelectorAll('*').forEach(el => el.style.animation = 'none');
+        }
+    </script>
+</body>
+
+</html>
